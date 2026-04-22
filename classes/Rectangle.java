@@ -10,16 +10,18 @@ public class Rectangle extends Shape {
     this.length = length;
     this.width = width;
   }
-
-  @Override
-  public double area() {
-    return length * width;
+// зачетное задание
+  public Rectangle(double diagonal, double angleDegrees, boolean byAngle) {
+    double rad = Math.toRadians(angleDegrees);
+    this.length = diagonal * Math.cos(rad);
+    this.width  = diagonal * Math.sin(rad);
   }
 
   @Override
-  public double perimeter() {
-    return 2 * (length + width);
-  }
+  public double area() { return length * width; }
+
+  @Override
+  public double perimeter() { return 2 * (length + width); }
 
   @Override
   public double getRadiusExternal() {
@@ -29,10 +31,10 @@ public class Rectangle extends Shape {
 
   @Override
   public double getRadiusInternal() {
-    if (length == width) {
-      radiusInternal = length / 2;
-      return radiusInternal;
-    }
+    if (Math.abs(length - width) < 1e-9) { radiusInternal = length / 2; return radiusInternal; }
     return -1;
   }
+
+  public double getLength() { return length; }
+  public double getWidth()  { return width; }
 }

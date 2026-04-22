@@ -17,6 +17,16 @@ public class Triangle extends Shape {
     this.lengthSide2 = lengthSide2;
     this.lengthSide3 = lengthSide3;
   }
+  // зачетное задание
+  public Triangle(double side1, double side2, double angleDegrees, boolean byAngle) {
+    double rad = Math.toRadians(angleDegrees);
+    this.lengthSide1 = side1;
+    this.lengthSide2 = side2;
+    this.lengthSide3 = Math.sqrt(side1 * side1 + side2 * side2 - 2 * side1 * side2 * Math.cos(rad));
+    double area = 0.5 * side1 * side2 * Math.sin(rad);
+    this.base   = side1;
+    this.height = (2 * area) / side1;
+  }
 
   public boolean exists() {
     return (lengthSide1 + lengthSide2 > lengthSide3) &&
@@ -25,14 +35,10 @@ public class Triangle extends Shape {
   }
 
   @Override
-  public double area() {
-    return (base * height) / 2;
-  }
+  public double area() { return (base * height) / 2; }
 
   @Override
-  public double perimeter() {
-    return lengthSide1 + lengthSide2 + lengthSide3;
-  }
+  public double perimeter() { return lengthSide1 + lengthSide2 + lengthSide3; }
 
   private double heronArea() {
     double s = (lengthSide1 + lengthSide2 + lengthSide3) / 2;

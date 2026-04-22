@@ -10,16 +10,17 @@ public class Rhombus extends Shape {
     this.length = length;
     this.height = height;
   }
-
-  @Override
-  public double area() {
-    return length * height;
+  // зачетное задание
+  public Rhombus(double length, double angleDegrees, boolean byAngle) {
+    this.length = length;
+    this.height = length * Math.sin(Math.toRadians(angleDegrees));
   }
 
   @Override
-  public double perimeter() {
-    return 4 * length;
-  }
+  public double area() { return length * height; }
+
+  @Override
+  public double perimeter() { return 4 * length; }
 
   @Override
   public double getRadiusInternal() {
@@ -29,7 +30,7 @@ public class Rhombus extends Shape {
 
   @Override
   public double getRadiusExternal() {
-    if (length == height) {
+    if (Math.abs(length - height) < 1e-9) {
       radiusExternal = length * Math.sqrt(2) / 2;
       return radiusExternal;
     }
